@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Barcode Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Barcode Result</h1>
+        <div class="result">
+            <p th:if="${producto}">
+                Producto: <span th:text="${producto.nombre}">Nombre del Producto</span><br>
+                Código de Barras: <span th:text="${producto.codigoDeBarras}">Código de Barras</span><br>
+                Precio: $<span th:text="${producto.precio}">Precio</span>
+            </p>
+            <p th:if="${error}" th:text="${error}">Error will appear here</p>
+        </div>
+        <form th:action="@{/barcode/scan}" method="get">
+            <button type="submit" class="button">Scan Another</button>
+        </form>
+        <form th:action="@{/barcode/configure}" method="get">
+            <button type="submit" class="button">Configure Port</button>
+        </form>
+    </div>
+</body>
+</html>

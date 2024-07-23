@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Configure Port</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        .select {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Configure Port</h1>
+        <form th:action="@{/barcode/configure}" method="post">
+            <select name="portName" class="select">
+                <option th:each="port : ${ports}" th:text="${port}" th:value="${port}">Port</option>
+            </select>
+            <br>
+            <button type="submit" class="button">Configure</button>
+        </form>
+    </div>
+</body>
+</html>
