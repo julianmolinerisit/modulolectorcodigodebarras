@@ -48,12 +48,13 @@ public class BarcodeController {
             Optional<Producto> producto = productoService.getProductoByCodigoDeBarras(codigoDeBarras);
             if (producto.isPresent()) {
                 model.addAttribute("producto", producto.get());
+                return "barcode";
             } else {
-                model.addAttribute("error", "Producto no encontrado para el código de barras: " + codigoDeBarras);
+                return "redirect:/productos/nuevo?codigoDeBarras=" + codigoDeBarras;
             }
         } catch (IllegalStateException e) {
             model.addAttribute("error", e.getMessage());
+            return "barcode";
         }
-        return "barcode";
     }
 }

@@ -23,8 +23,12 @@ public class ProductoController {
     }
 
     @GetMapping("/nuevo")
-    public String nuevoProductoForm(Model model) {
-        model.addAttribute("producto", new Producto());
+    public String nuevoProductoForm(@RequestParam(name = "codigoDeBarras", required = false) String codigoDeBarras, Model model) {
+        Producto producto = new Producto();
+        if (codigoDeBarras != null && !codigoDeBarras.isEmpty()) {
+            producto.setCodigoDeBarras(codigoDeBarras);
+        }
+        model.addAttribute("producto", producto);
         return "nuevo_producto";
     }
 
